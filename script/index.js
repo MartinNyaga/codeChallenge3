@@ -1,3 +1,4 @@
+
 // Getting the data from server
 function getData() {
     fetch('http://localhost:3000/films')
@@ -7,6 +8,7 @@ function getData() {
   
   getData();
 
+  
   // The DOM manipulation
 
   function domManipulate(movie){
@@ -23,7 +25,7 @@ function getData() {
       moreInfo(dub, div);
     });
 
-     //Creating the voting button and event listener
+     //Creating the buy ticket button and event listener
      let buyTicket = document.createElement('button');
      let tickets = dub.tickets_sold;
      let capacity = dub.capacity;
@@ -31,8 +33,9 @@ function getData() {
      dock.appendChild(buyTicket)
      buyTicket.addEventListener('click', () => {
        if(tickets >= capacity){
-        alert("The movie is sold out")
+        alert("This movie is sold out")
        }else{
+        alert("Enjoy The Movie!")
         tickets++
         updateTickets(dub.id, tickets);
        }
@@ -49,7 +52,7 @@ function remInfo() {
     }
   }
 
-  // Update votes on the server
+  // Update tickets sold on the server
 function updateTickets(id, tickets) {
     fetch(`http://localhost:3000/films/${id}`, {
       method: 'PATCH',
